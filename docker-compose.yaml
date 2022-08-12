@@ -1,0 +1,23 @@
+# docker-compose.yaml
+version: "3.7"
+
+services:
+  lsapi-v2-support:
+    container_name: lsapi-v2-support
+    image: github.com/osmosa44/lsapi-v2-support:dev
+    build:
+      context: .
+      target: dev
+    volumes:
+      - .:/app
+    ports:
+      - "5000:5000"
+      - "2345:2345"
+    networks:
+      - lsapi-network
+    dns:
+      - 8.8.8.8
+
+networks:
+  lsapi-network:
+    name: lsapi-network
